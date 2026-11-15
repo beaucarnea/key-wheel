@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Key Wheel</title>
+  <meta name="description" content="Learn the Camelot wheel, hear every key and train your ears for harmonic mixing.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo" aria-hidden="true"></span>
+      <strong>Key Wheel</strong>
+    </div>
+    <nav class="tabs" role="tablist">
+      <button type="button" role="tab" data-tab="wheel">Wheel</button>
+      <button type="button" role="tab" data-tab="learn">Learn</button>
+      <button type="button" role="tab" data-tab="train">Train</button>
+    </nav>
+    <div class="tools">
+      <button type="button" class="btn small" id="lang">Note names: EN</button>
+      <button type="button" class="btn small" id="stop" title="Stop all sound (Esc)">■ Stop</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- Wheel: pick a key, see and hear what it mixes with -->
+    <section id="wheel" class="view" hidden>
+      <div class="wheel-layout">
+        <div class="card wheel-card">
+          <svg id="wheel-svg" aria-label="Camelot wheel"></svg>
+          <ul class="legend">
+            <li><span class="sw sw-sel"></span>Selected</li>
+            <li><span class="sw sw-good"></span>Smooth mix (−1, +1, A↔B)</li>
+            <li><span class="sw sw-warn"></span>Bold move (+2, +7)</li>
+          </ul>
+          <p class="muted hint">Outer ring = major (B) · inner ring = minor (A). Click a key to hear it, hover another to compare.</p>
+        </div>
+        <div class="card" id="details"></div>
+      </div>
+    </section>
+
+    <!-- Learn: the theory, step by step, with sound examples -->
+    <section id="learn" class="view" hidden>
+      <article class="card prose">
+        <h2>1 · Twelve notes</h2>
+        <p>Western music uses <b>12 notes</b> that repeat in every octave: C, C♯, D, D♯, E, F, F♯, G, G♯, A, A♯, B, then C again, twice as high. The step from one to the next is a <b>semitone</b> (one piano key, black or white).</p>
+        <div class="row">
+          <button type="button" class="btn" data-demo="chromatic">▶ All 12 semitones</button>
+          <button type="button" class="btn" data-demo="octave">▶ C in three octaves</button>
+        </div>
+        <p>A note between two letters has two names: C♯ (“C sharp”, German <i>Cis</i>) is the same key as D♭ (“D flat”, German <i>Des</i>).</p>
+        <p class="callout"><b>German trap:</b> English B is German <b>H</b>, and English B♭ is German <b>B</b>. DJ software uses English names, so “Bm” means h-Moll, not b-Moll.</p>
+      </article>
+
+      <article class="card prose">
+        <h2>2 · Keys: 7 of the 12 notes</h2>
+        <p>A <b>key</b> is a set of 7 notes that a song mostly uses, plus a “home” note it keeps returning to (the <b>root</b>). There are 12 possible roots and two common flavours, so <b>24 keys</b>:</p>
+        <ul>
+          <li><b>Major</b> (Dur): sounds bright, happy, stable. On the Camelot wheel: <b>B</b>.</li>
+          <li><b>Minor</b> (Moll): sounds darker, sadder, more tense. On the wheel: <b>A</b>.</li>
+        </ul>
+        <div class="row">
+          <button type="button" class="btn" data-demo="chord:8B">▶ C major chord</button>
+          <button type="button" class="btn" data-demo="chord:5A">▶ C minor chord</button>
+          <button type="button" class="btn" data-demo="scale:8B">▶ C major scale</button>
+          <button type="button" class="btn" data-demo="scale:5A">▶ C minor scale</button>
+        </div>
+        <p>A <b>cadence</b> (four chords that lead back home) makes the key easy to hear:</p>
+        <div class="row">
+          <button type="button" class="btn" data-demo="cadence:8B">▶ Cadence in C major</button>
+          <button type="button" class="btn" data-demo="cadence:8A">▶ Cadence in A minor</button>
+        </div>
+      </article>
+
+      <article class="card prose">
+        <h2>3 · Why the wheel works</h2>
+        <p>The Camelot wheel is the <b>circle of fifths</b> (Quintenzirkel) with simple codes. Each step around the wheel moves the root a fifth (7 semitones) and changes exactly <b>one</b> of the 7 notes. That is why neighbours sound good together: they share <b>6 of 7 notes</b>.</p>
+        <ul>
+          <li><b>Number 1–12</b>: position on the wheel, like hours on a clock.</li>
+          <li><b>Letter</b>: A = minor (inner ring), B = major (outer ring).</li>
+          <li><b>Same number, other letter</b>: the <i>relative</i> key (Paralleltonart). 8A (A minor) and 8B (C major) use exactly the same 7 notes, only the home note differs.</li>
+        </ul>
+        <div class="row">
+          <button type="button" class="btn" data-demo="scale:8A">▶ A minor scale (8A)</button>
+          <button type="button" class="btn" data-demo="scale:8B">▶ C major scale (8B)</button>
+          <button type="button" class="btn" data-demo="wheel:8A">Show 8A on the wheel →</button>
+        </div>
+      </article>
+
+      <article class="card prose">
+        <h2>4 · Mixing moves</h2>
+        <p>Starting from a track in <b>8A</b>, these are the classic choices for the next track:</p>
+        <table class="moves-table">
+          <thead><tr><th>Move</th><th>Example</th><th>Shared notes</th><th>Feels like</th><th></th></tr></thead>
+          <tbody>
+            <tr><td>Same key</td><td>8A → 8A</td><td>7/7</td><td>Seamless</td><td></td></tr>
+            <tr><td>One step (±1)</td><td>8A → 7A / 9A</td><td>6/7</td><td>Smooth, the standard move</td><td><button type="button" class="btn small" data-demo="blend:8A:9A">▶ Blend</button></td></tr>
+            <tr><td>Relative (A↔B)</td><td>8A → 8B</td><td>7/7</td><td>Mood flips darker ↔ brighter</td><td><button type="button" class="btn small" data-demo="blend:8A:8B">▶ Blend</button></td></tr>
+            <tr><td>Energy boost (+2)</td><td>8A → 10A</td><td>5/7</td><td>Noticeable lift, keep it short</td><td><button type="button" class="btn small" data-demo="blend:8A:10A">▶ Blend</button></td></tr>
+            <tr><td>Semitone up (+7)</td><td>8A → 3A</td><td>2/7</td><td>Hard key change, not for long blends</td><td><button type="button" class="btn small" data-demo="blend:8A:3A">▶ Blend</button></td></tr>
+            <tr><td><i>Clash</i></td><td>8A → 2A</td><td>2/7</td><td>Sour – avoid blending</td><td><button type="button" class="btn small" data-demo="blend:8A:2A">▶ Blend</button></td></tr>
+          </tbody>
+        </table>
+        <p class="muted">“Blend” plays track 1 alone, then both tracks together, like when two decks overlap.</p>
+      </article>
+
+      <article class="card prose">
+        <h2>5 · Three ways to write a key</h2>
+        <p>Rekordbox and Serato can show Camelot or classic notation (e.g. <code>C#m</code>); Traktor uses <b>Open Key</b>, where <code>d</code> = major, <code>m</code> = minor and the numbers are shifted by 7 (8B = 1d).</p>
+        <div class="table-wrap"><table id="notation-table" class="notation"></table></div>
+      </article>
+
+      <article class="card prose">
+        <h2>6 · In practice</h2>
+        <ul>
+          <li>Key detection software is often wrong, especially with techno, drums-only intros or tracks without a clear melody. Trust your ears over the label.</li>
+          <li>Key matters most during <b>long blends</b> where melodies overlap. Quick cuts or drum-only transitions hide clashes.</li>
+          <li>Tempo changes key: speeding a track up with the pitch fader also raises its key unless key lock / master tempo is on.</li>
+        </ul>
+      </article>
+    </section>
+
+    <!-- Train: ear-training exercises -->
+    <section id="train" class="view" hidden>
+      <div id="trainer" class="train-grid"></div>
+    </section>
+
+    <section class="card keyboard-card" aria-label="Piano keyboard">
+      <div class="keyboard-head">
+        <h3>Keyboard</h3>
+        <p class="muted">Click keys or use your computer keyboard: <kbd>A</kbd> <kbd>W</kbd> <kbd>S</kbd> … <kbd>K</kbd> = C4 to C5. Coloured keys = notes of the selected key.</p>
+      </div>
+      <div class="keyboard-scroll"><div id="keyboard" class="keyboard"></div></div>
+    </section>
+  </main>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
